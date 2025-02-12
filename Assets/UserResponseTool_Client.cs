@@ -25,6 +25,7 @@ public class UserResponseTool_Client : MonoBehaviour
     public bool startTrial = false;
     public float waitTime;
     public int trialNumber;
+    public string pattern;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,7 @@ public class UserResponseTool_Client : MonoBehaviour
 
         if (startTrial) {
             startTrial = false;
-            StartCoroutine(trialController.TrialStart(waitTime, trialNumber));
+            StartCoroutine(trialController.TrialStart(waitTime, trialNumber, pattern));
         }
     }
 
@@ -115,6 +116,7 @@ public class UserResponseTool_Client : MonoBehaviour
                             string[] messageParams = receivedMessage.Split(",");
                             waitTime = float.Parse(messageParams[1]);
                             trialNumber = int.Parse(messageParams[2]);
+                            pattern = messageParams[3];
                             startTrial = true;
                         }
 

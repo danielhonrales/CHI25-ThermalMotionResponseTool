@@ -7,6 +7,7 @@ public class TrialController : MonoBehaviour
     public UserResponseTool_Client tcpClient;
 
     public int trialNumber;
+    public string pattern;
     public List<Trial> allResponses;
     public Trial trialResponses;
     public List<GameObject> questionUIs;
@@ -36,9 +37,10 @@ public class TrialController : MonoBehaviour
         currentQuestion = 0;
     }
 
-    public IEnumerator TrialStart(float time, int incomingTrialNumber) {
+    public IEnumerator TrialStart(float time, int incomingTrialNumber, string incomingPattern) {
         Debug.Log(string.Format("Trial Start, waiting for {0}", time));
         trialNumber = incomingTrialNumber;
+        pattern = incomingPattern;
         yield return new WaitForSeconds(time / 1000f);
         
         LoadResponseUI();
@@ -68,6 +70,12 @@ public class TrialController : MonoBehaviour
         }
     }
 
+    public void SkipRestOfTrial() {
+        questionUIs[currentQuestion].SetActive(false);
+        currentQuestion = questionUIs.Count - 1;
+        questionUIs[currentQuestion].SetActive(true);
+    }
+
     public void EndTrial() {
         allResponses.Add(trialResponses);
         trialNumber++;
@@ -88,6 +96,10 @@ public class TrialController : MonoBehaviour
         tcpClient.SendSignal(message);
     }
 
+    public void RecordTrialResponseFelt(string response) {
+        trialResponses.responseFelt = response;
+    }
+
     public void RecordTrialResponseTemp(string response) {
         trialResponses.responseTemp = response;
     }
@@ -97,7 +109,7 @@ public class TrialController : MonoBehaviour
     }
 
     public void Test() {
-        StartCoroutine(TrialStart(3000,1));
+        StartCoroutine(TrialStart(3000,1,"circle"));
         testing = false;
     }
 
@@ -109,12 +121,14 @@ public class TrialController : MonoBehaviour
 
     public class Trial {
         public int number;
+        public string responseFelt;
         public string responseTemp;
         public string responseSmooth;
 
         public string ToListString() {
-            return string.Format("{0},{1},{2}",
+            return string.Format("{0},{1},{2},{3}",
                 number,
+                responseFelt,
                 responseTemp,
                 responseSmooth
             );
