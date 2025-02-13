@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseTemp
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseTemp
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -498,7 +498,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseTemp
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -643,7 +643,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseTemp
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1280,7 +1280,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1748,7 +1748,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2371,7 +2371,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2595,7 +2595,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseTemp
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3983,7 +3983,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4810,7 +4810,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5089,7 +5089,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5368,7 +5368,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 513901174}
         m_TargetAssemblyTypeName: TrialController, Assembly-CSharp
-        m_MethodName: RecordTrialResponseSmooth
+        m_MethodName: RecordTrialResponse
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

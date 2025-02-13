@@ -31,6 +31,7 @@ public class UserResponseTool_Client : MonoBehaviour
     void Start()
     {
         inputIP.text = pcIP;
+        client = new TcpClient();
     }
 
     // Update is called once per frame
@@ -48,27 +49,29 @@ public class UserResponseTool_Client : MonoBehaviour
     }
 
     public void EstablishConnection() {
+        if (client != null && !client.Connected) {
         try
-        {
-            // Create a TCP/IP socket
-            client = new TcpClient();
+            {
+                // Create a TCP/IP socket
+                client = new TcpClient();
 
-            client.ConnectAsync(inputIP.text, port).Wait(1000);
+                client.ConnectAsync(inputIP.text, port).Wait(1000);
+                
+                // Get a client stream for reading and writing
+                stream = client.GetStream();
 
-            // Get a client stream for reading and writing
-            stream = client.GetStream();
+                isRunning = true;
+                receiveThread = new Thread(new ThreadStart(ReadSignal));
+                receiveThread.IsBackground = true;
+                receiveThread.Start();
 
-            isRunning = true;
-            receiveThread = new Thread(new ThreadStart(ReadSignal));
-            receiveThread.IsBackground = true;
-            receiveThread.Start();
-
-            Debug.Log("SignalSender is connected");
-            button.color = Colors.darkGreen;
-        }
-        catch (SocketException e)
-        {
-            SocketError(e);
+                Debug.Log("SignalSender is connected");
+                button.color = Colors.darkGreen;
+            }
+            catch (SocketException e)
+            {
+                SocketError(e);
+            }
         }
     }
 

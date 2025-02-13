@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrialController : MonoBehaviour
@@ -41,6 +42,9 @@ public class TrialController : MonoBehaviour
         Debug.Log(string.Format("Trial Start, waiting for {0}", time));
         trialNumber = incomingTrialNumber;
         pattern = incomingPattern;
+
+        trialResponses = new();
+        trialResponses.number = trialNumber;
         yield return new WaitForSeconds(time / 1000f);
         
         LoadResponseUI();
@@ -49,8 +53,7 @@ public class TrialController : MonoBehaviour
     public void LoadResponseUI() {
         idleScreen.SetActive(false);
 
-        trialResponses = new();
-        trialResponses.number = trialNumber;
+        
         foreach (GameObject questionUI in questionUIs) {
             questionUI.SetActive(false);
         }
@@ -96,16 +99,8 @@ public class TrialController : MonoBehaviour
         tcpClient.SendSignal(message);
     }
 
-    public void RecordTrialResponseFelt(string response) {
-        trialResponses.responseFelt = response;
-    }
-
-    public void RecordTrialResponseTemp(string response) {
-        trialResponses.responseTemp = response;
-    }
-
-    public void RecordTrialResponseSmooth(string response) {
-        trialResponses.responseSmooth = response;
+    public void RecordTrialResponse(string response) {
+        trialResponses.responses.Add(response);
     }
 
     public void Test() {
@@ -121,16 +116,12 @@ public class TrialController : MonoBehaviour
 
     public class Trial {
         public int number;
-        public string responseFelt;
-        public string responseTemp;
-        public string responseSmooth;
+        public List<string> responses = new();
 
         public string ToListString() {
-            return string.Format("{0},{1},{2},{3}",
+            return string.Format("{0},{1}",
                 number,
-                responseFelt,
-                responseTemp,
-                responseSmooth
+                string.Join(",", responses)
             );
         }
     }
