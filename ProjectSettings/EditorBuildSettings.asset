@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TrialRecorder.unity
+    path: Assets/Scenes/ResponseTool.unity
     guid: d7a3572afd1eb4f4d89a7808aaa91fa2
   m_configObjects: {}

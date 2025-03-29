@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrialController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TrialController : MonoBehaviour
     public Trial trialResponses;
     public List<GameObject> questionUIs;
     public GameObject idleScreen;
+    public GameObject trialScreen;
     public int currentQuestion;
 
     public bool testing = false;
@@ -38,21 +40,36 @@ public class TrialController : MonoBehaviour
         currentQuestion = 0;
     }
 
-    public IEnumerator TrialStart(float time, int incomingTrialNumber, string incomingPattern) {
+    public void TrialStart(float time, int incomingTrialNumber, string incomingPattern) {
         Debug.Log(string.Format("Trial Start, waiting for {0}", time));
         trialNumber = incomingTrialNumber;
         pattern = incomingPattern;
 
         trialResponses = new();
         trialResponses.number = trialNumber;
+
+        LoadTrialScreen(pattern);
+        StartCoroutine(LoadResponseUIHelper(time));
+    }
+
+    public IEnumerator LoadResponseUIHelper(float time) {
+        yield return new WaitForSeconds(3);
         yield return new WaitForSeconds(time / 1000f);
-        
         LoadResponseUI();
     }
 
-    public void LoadResponseUI() {
+    public void LoadTrialScreen(string pattern) {
         idleScreen.SetActive(false);
+        trialScreen.SetActive(true);
+        string spriteFilePath = "Sprites\\" + pattern;
+        Debug.Log("Loading " + spriteFilePath);
+        trialScreen.transform.Find("Pattern").GetComponent<Image>().sprite = Resources.Load<Sprite>(spriteFilePath);
+    }
 
+    public void LoadResponseUI() {
+        Debug.Log("Loading response UI");
+        idleScreen.SetActive(false);
+        trialScreen.SetActive(false);
         
         foreach (GameObject questionUI in questionUIs) {
             questionUI.SetActive(false);
@@ -85,7 +102,7 @@ public class TrialController : MonoBehaviour
 
         idleScreen.SetActive(true);
 
-        StartCoroutine(NextTrial());
+        NextTrial();
     }
 
     public void EndExperiment() {
@@ -104,12 +121,11 @@ public class TrialController : MonoBehaviour
     }
 
     public void Test() {
-        StartCoroutine(TrialStart(3000,1,"circle"));
+        TrialStart(3000,1,"circle");
         testing = false;
     }
 
-    private IEnumerator NextTrial() {
-        yield return new WaitForSeconds(2.5f);
+    private void NextTrial() {
         string message = "nexttrial";
         tcpClient.SendSignal(message);
     }

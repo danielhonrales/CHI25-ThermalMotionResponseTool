@@ -44,7 +44,7 @@ public class UserResponseTool_Client : MonoBehaviour
 
         if (startTrial) {
             startTrial = false;
-            StartCoroutine(trialController.TrialStart(waitTime, trialNumber, pattern));
+            trialController.TrialStart(waitTime, trialNumber, pattern);
         }
     }
 
