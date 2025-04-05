@@ -48,6 +48,7 @@ public class TrialController : MonoBehaviour
         trialResponses = new();
         trialResponses.number = trialNumber;
 
+        Debug.Log("Loading trial screen...");
         LoadTrialScreen(pattern);
         StartCoroutine(LoadResponseUIHelper(time));
     }
@@ -55,6 +56,7 @@ public class TrialController : MonoBehaviour
     public IEnumerator LoadResponseUIHelper(float time) {
         yield return new WaitForSeconds(3);
         yield return new WaitForSeconds(time / 1000f);
+        Debug.Log("Loading response UI...");
         LoadResponseUI();
     }
 
@@ -101,8 +103,7 @@ public class TrialController : MonoBehaviour
         trialNumber++;
 
         idleScreen.SetActive(true);
-
-        NextTrial();
+        StartCoroutine(NextTrial());
     }
 
     public void EndExperiment() {
@@ -125,8 +126,9 @@ public class TrialController : MonoBehaviour
         testing = false;
     }
 
-    private void NextTrial() {
+    private IEnumerator NextTrial() {
         string message = "nexttrial";
+        yield return new WaitForSeconds(2);
         tcpClient.SendSignal(message);
     }
 
